@@ -8,7 +8,7 @@
 }
 .main-frame {
   background-color: white;
-  height: 50vh;
+  height: auto;
   width: 80vh;
   position: relative;
   max-width: 400px;
@@ -17,28 +17,33 @@
   border-radius: 10px;
 }
 .game-title {
-    font-family: 'Anton', sans-serif;
-    font-weight: normal;
-    
+  font-family: "Anton", sans-serif;
+  font-weight: normal;
+  border-bottom: 1px solid #dddddd;
+  padding: 5px;
 }
 .board {
-    display: flex;
-    position: relative;
-    align-content: space-around;
-    height: 50%;    
-    margin-top: 5%;
-    // background-color: black;
+  display: flex;
+  position: relative;
+  margin-top: 5%;
+  // background-color: black;
 }
-.tile{
-  height: 60%;
+.tile {
   width: 100%;
   border-radius: 5px;
   position: relative;
 }
-.option-bar{
+.option-bar {
   position: relative;
-  top: 25%;
-  background-color: #EEEEEE;
+  background-color: #eeeeee;
+  top: 10px;
   width: 100%;
   border-radius: 0 0 10px 10px;
+}
+
+i {
+  font-size: 3em;
+}
+.top-buffer {
+  margin-top: 20px;
 }

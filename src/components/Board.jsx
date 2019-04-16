@@ -1,75 +1,51 @@
 import React, { Component } from "react";
-
+import Button from './Button'
 class Board extends Component {
   state = {};
   render() {
     return (
       <div className="board">
-        <div className="container ">
-          <div className="row h-50 ">
+        <div className="container">
+          <div className="row h-25 mb-4 ">
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
           </div>
-          <div className="row h-50">
+          <div className="row h-25 mb-4">
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
           </div>
-          <div className="row h-50">
+          <div className="row h-25 mb-4">
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
             <div className="col">
-               <button className="tile">
-                <i className="fas fa-arrows-alt" />
-              </button>
+               <Button />
             </div>
           </div>
         </div>
