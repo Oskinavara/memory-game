@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
-import './App.css';
+import './App.scss';
+import MainFrame from './components/MainFrame';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        DUPA
+        <MainFrame />
       </div>
     );
   }
