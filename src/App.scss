@@ -8,17 +8,37 @@
 }
 .main-frame {
   background-color: white;
-  height: 50%;
-  width: 30%;
+  height: 50vh;
+  width: 80vh;
   position: relative;
+  max-width: 400px;
+  min-width: 200px;
   right: 20%;
   border-radius: 10px;
 }
 .game-title {
     font-family: 'Anton', sans-serif;
     font-weight: normal;
+    
 }
 .board {
-    //background-color: blue;
-    
+    display: flex;
+    position: relative;
+    align-content: space-around;
+    height: 50%;    
+    margin-top: 5%;
+    // background-color: black;
+}
+.tile{
+  height: 60%;
+  width: 100%;
+  border-radius: 5px;
+  position: relative;
+}
+.option-bar{
+  position: relative;
+  top: 25%;
+  background-color: #EEEEEE;
+  width: 100%;
+  border-radius: 0 0 10px 10px;
 }
