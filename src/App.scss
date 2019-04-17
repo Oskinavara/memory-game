@@ -23,27 +23,32 @@
   padding: 5px;
 }
 .board {
-  display: flex;
-  position: relative;
-  margin-top: 5%;
+  position: relative;  
   // background-color: black;
+  margin-bottom: 20px;
 }
 .tile {
-  width: 100%;
+  padding: 50% 50%;
+
   border-radius: 5px;
   position: relative;
 }
 .option-bar {
-  position: relative;
+  position: absolute;
   background-color: #eeeeee;
-  top: 10px;
+  bottom: -40px;
   width: 100%;
   border-radius: 0 0 10px 10px;
 }
 
-i {
-  font-size: 3em;
+.fas{
+  font-size: 3.5em;
+  position: absolute;
+  right: 0.15em;
+  bottom: 0.15em;
+  
 }
-.top-buffer {
-  margin-top: 20px;
+
+.row{
+  margin-bottom:30px;
 }
