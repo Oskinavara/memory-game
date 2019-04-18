@@ -29,7 +29,6 @@
 }
 .tile {
   padding: 50% 50%;
-
   border-radius: 5px;
   position: relative;
 }
@@ -44,9 +43,13 @@
 .fas{
   font-size: 3.5em;
   position: absolute;
-  right: 0.15em;
-  bottom: 0.15em;
-  
+  // right: 0.15em;
+  // bottom: 0.15em;
+  left: 0; 
+  right: 0; 
+  top: 8%;
+  bottom: 0;
+  margin: auto; 
 }
 
 .row{
