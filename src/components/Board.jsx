@@ -26,19 +26,22 @@ animalArray = animalArray.concat(animalArray);
 shuffle(animalArray);
 
 class Board extends Component {
-  state = { firstPick: "", secondPick: "", pickCount: 0 };
-  constructor(props) {
-    super(props);
-    this.buttonElement = React.createRef();
-  }
+  state = { firstPick: "aaa", secondPick: "bbb", pickCount: 0 };
 
-  handleClick = () => {
-    this.buttonElement.current.toggleHidden();
-    this.setState({
-      firstPick: this.icon,
-      pickCount: this.state.pickCount + 1
-    });
-    alert(this.state.firstPick);
+  handleClick = (icon, visibility) => () => {
+    var pickCount = this.state.pickCount;
+
+    if (pickCount % 2 === 0) {
+      this.setState({ pickCount: pickCount + 1, firstPick: icon });
+      visibility = !visibility;
+      
+    } else {
+      this.setState({ secondPick: icon, pickCount: pickCount + 1 });
+      visibility = !visibility;
+    }
+    if (this.state.firstPick !== this.state.secondPick) {
+      
+    }
   };
   render() {
     return (
@@ -47,90 +50,79 @@ class Board extends Component {
           <div className="row align-items-start">
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[0]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[0])}
+                visibility={true}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[1]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[1])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[2]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[2])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[3]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[3])}
               />
             </div>
           </div>
           <div className="row align-items-center">
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[4]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[4])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[5]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[5])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[6]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[6])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[7]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[7])}
               />
             </div>
           </div>
           <div className="row align-items-end">
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[8]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[8])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[9]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[9])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[10]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[10])}
               />
             </div>
             <div className="col-3">
               <Button
-                ref={this.buttonElement}
                 icon={animalArray[11]}
-                onClick={this.handleClick}
+                onClick={this.handleClick(animalArray[11])}
               />
             </div>
           </div>
