@@ -1,19 +1,27 @@
 import React, { Component } from "react";
-// var array=["up", "down", "right", "left"];
-class Button extends Component {
-  state = { isHidden: false };
-  toggleHidden = () => {
-    return (
-      this.setState({isHidden: !this.state.isHidden})
-    );
-  };
 
+class Button extends Component {
+  state = { isHidden: true };
+
+  toggleHidden = () => {
+    this.props.onClick();
+  };
+  onClick = () => {
+    this.toggleHidden();
+    if (this.props.onClick) {
+      this.props.onClick();
+    }
+  };
   render() {
     return (
       <div>
-        <button className="tile" onClick={this.toggleHidden}>
-        <i className="fas fa-arrow-alt-circle-right" style={this.state.isHidden ? {display:"none"} : {display: "block"}} />
-          
+        <button className="tile" onClick={this.onClick}>
+          <i
+            className={this.props.icon}
+            style={
+              this.props.visibility ? { display: "none" } : { display: "none" }
+            }
+          />
         </button>
       </div>
     );
