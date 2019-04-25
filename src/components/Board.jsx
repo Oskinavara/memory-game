@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { useState } from "react";
 import Button from "./Button";
 var animalArray = [
   "fas fa-cat",
@@ -25,111 +25,51 @@ animalArray.splice(0, animalArray.length - 6);
 animalArray = animalArray.concat(animalArray);
 shuffle(animalArray);
 
-class Board extends Component {
-  state = { firstPick: "aaa", secondPick: "bbb", pickCount: 0 };
+const Board = () => {
+  const [isHidden, setIsHidden] =useState(Array(12).fill(true));
+  const [icon] = useState(animalArray);
+  // const [pickCount, setPickCount] = useState(0);
 
-  handleClick = (icon, visibility) => () => {
-    var pickCount = this.state.pickCount;
+  // const handleClick = index => {
+  //   const isShown = isHidden.slice().map(d => !d);
+  //   setIsHidden(isShown[index]);
+  //   console.log("dupa")
+  // };
 
-    if (pickCount % 2 === 0) {
-      this.setState({ pickCount: pickCount + 1, firstPick: icon });
-      visibility = !visibility;
-      
-    } else {
-      this.setState({ secondPick: icon, pickCount: pickCount + 1 });
-      visibility = !visibility;
-    }
-    if (this.state.firstPick !== this.state.secondPick) {
-      
-    }
-  };
-  render() {
+  const renderButton = index => {
+    const isNotHidden = () => !isHidden[index];
     return (
-      <div className="board">
-        <div className="container">
-          <div className="row align-items-start">
-            <div className="col-3">
-              <Button
-                icon={animalArray[0]}
-                onClick={this.handleClick(animalArray[0])}
-                visibility={true}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[1]}
-                onClick={this.handleClick(animalArray[1])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[2]}
-                onClick={this.handleClick(animalArray[2])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[3]}
-                onClick={this.handleClick(animalArray[3])}
-              />
-            </div>
-          </div>
-          <div className="row align-items-center">
-            <div className="col-3">
-              <Button
-                icon={animalArray[4]}
-                onClick={this.handleClick(animalArray[4])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[5]}
-                onClick={this.handleClick(animalArray[5])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[6]}
-                onClick={this.handleClick(animalArray[6])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[7]}
-                onClick={this.handleClick(animalArray[7])}
-              />
-            </div>
-          </div>
-          <div className="row align-items-end">
-            <div className="col-3">
-              <Button
-                icon={animalArray[8]}
-                onClick={this.handleClick(animalArray[8])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[9]}
-                onClick={this.handleClick(animalArray[9])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[10]}
-                onClick={this.handleClick(animalArray[10])}
-              />
-            </div>
-            <div className="col-3">
-              <Button
-                icon={animalArray[11]}
-                onClick={this.handleClick(animalArray[11])}
-              />
-            </div>
-          </div>
+      <Button
+        icon={icon[index]}
+        isHidden={isHidden[index]}
+        onClick={() =>setIsHidden(isNotHidden)}
+      />
+    );
+  };
+  return (
+    <div className="board">
+      <div className="container">
+        <div className="row align-items-start">
+          <div className="col-3">{renderButton(0)}</div>
+          <div className="col-3">{renderButton(1)}</div>
+          <div className="col-3">{renderButton(2)}</div>
+          <div className="col-3">{renderButton(3)}</div>
+        </div>
+        <div className="row align-items-center">
+          <div className="col-3">{renderButton(4)}</div>
+          <div className="col-3">{renderButton(5)}</div>
+          <div className="col-3">{renderButton(6)}</div>
+          <div className="col-3">{renderButton(7)}</div>
+        </div>
+        <div className="row align-items-end">
+          <div className="col-3">{renderButton(8)}</div>
+          <div className="col-3">{renderButton(9)}</div>
+          <div className="col-3">{renderButton(10)}</div>
+          <div className="col-3">{renderButton(11)}</div>
         </div>
       </div>
-    );
-  }
-}
+    </div>
+  );
+};
 
 export default Board;

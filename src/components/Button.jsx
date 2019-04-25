@@ -1,31 +1,17 @@
-import React, { Component } from "react";
+import React from "react";
 
-class Button extends Component {
-  state = { isHidden: true };
-
-  toggleHidden = () => {
-    this.props.onClick();
-  };
-  onClick = () => {
-    this.toggleHidden();
-    if (this.props.onClick) {
-      this.props.onClick();
-    }
-  };
-  render() {
-    return (
-      <div>
-        <button className="tile" onClick={this.onClick}>
-          <i
-            className={this.props.icon}
-            style={
-              this.props.visibility ? { display: "none" } : { display: "none" }
-            }
-          />
+const Button = ({ isHidden, icon, onClick }) => {
+  return (
+    <div>
+      {isHidden ? (
+        <button className="tile" onClick={onClick} />
+      ) : (
+        <button className="tile" onClick={onClick}>
+          <i className={icon} />
         </button>
-      </div>
-    );
-  }
-}
+      )}
+    </div>
+  );
+};
 
 export default Button;
