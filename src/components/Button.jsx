@@ -1,8 +1,8 @@
 import React from "react";
 
-const Button = ({ isHidden, icon, onClick }) => {
+const Button = ({ isHidden, icon, onClick, style}) => {
   return (
-    <div>
+    <>
       {isHidden ? (
         <button className="tile" onClick={onClick} />
       ) : (
@@ -10,7 +10,7 @@ const Button = ({ isHidden, icon, onClick }) => {
           <i className={icon} />
         </button>
       )}
-    </div>
+    </>
   );
 };
 

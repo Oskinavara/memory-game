@@ -26,23 +26,46 @@ animalArray = animalArray.concat(animalArray);
 shuffle(animalArray);
 
 const Board = () => {
-  const [isHidden, setIsHidden] =useState(Array(12).fill(true));
-  const [icon] = useState(animalArray);
+  const [isHidden, setIsHidden] = useState(Array(12).fill(false));
   // const [pickCount, setPickCount] = useState(0);
+  // const [firstPick, setFirstPick] = useState("");
+  // const [secondPick, setSecondPick] = useState("");
+  const array = ["", ""];
+  const handleClick = index => {
+    // setTimeout(() => {
+    //   console.log(firstPick);
+    //   console.log(secondPick);
+    // }, 1000);
+    // setPickCount(pickCount + 1);
+    setIsHidden(
+      isHidden.map((hidden, hiddenIndex) =>
+        index === hiddenIndex ? !hidden : hidden
+      )
+    );
+    if (array[0] === "") {
+      array[0] = animalArray[index];
+    } else {
+      array[1] = animalArray[index];
+    }
 
-  // const handleClick = index => {
-  //   const isShown = isHidden.slice().map(d => !d);
-  //   setIsHidden(isShown[index]);
-  //   console.log("dupa")
-  // };
+    console.log(array[0]);
+    console.log(array[1]);
+    // pickCount % 2 === 0
+    //   ? setFirstPick(animalArray[index])
+    //   : setSecondPick(animalArray[index]);
 
+    // if (secondPick === firstPick & pickCount > 1) {
+    //   console.log("teraz")
+    //   setFirstPick("")
+    //   setSecondPick("");
+    // }
+  };
   const renderButton = index => {
-    const isNotHidden = () => !isHidden[index];
     return (
       <Button
-        icon={icon[index]}
+        icon={animalArray[index]}
         isHidden={isHidden[index]}
-        onClick={() =>setIsHidden(isNotHidden)}
+        onClick={() => handleClick(index)}
       />
     );
   };
@@ -50,22 +73,25 @@ const Board = () => {
     <div className="board">
       <div className="container">
         <div className="row align-items-start">
-          <div className="col-3">{renderButton(0)}</div>
-          <div className="col-3">{renderButton(1)}</div>
-          <div className="col-3">{renderButton(2)}</div>
-          <div className="col-3">{renderButton(3)}</div>
+          {animalArray
+            .map((item, index) => (
+              <div className="col-3">{renderButton(index)}</div>
+            ))
+            .slice(0, 4)}
         </div>
         <div className="row align-items-center">
-          <div className="col-3">{renderButton(4)}</div>
-          <div className="col-3">{renderButton(5)}</div>
-          <div className="col-3">{renderButton(6)}</div>
-          <div className="col-3">{renderButton(7)}</div>
+          {animalArray
+            .map((item, index) => (
+              <div className="col-3">{renderButton(index)}</div>
+            ))
+            .slice(4, 8)}
         </div>
         <div className="row align-items-end">
-          <div className="col-3">{renderButton(8)}</div>
-          <div className="col-3">{renderButton(9)}</div>
-          <div className="col-3">{renderButton(10)}</div>
-          <div className="col-3">{renderButton(11)}</div>
+          {animalArray
+            .map((item, index) => (
+              <div className="col-3">{renderButton(index)}</div>
+            ))
+            .slice(8)}
         </div>
       </div>
     </div>
