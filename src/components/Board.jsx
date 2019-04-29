@@ -27,38 +27,13 @@ shuffle(animalArray);
 
 const Board = () => {
   const [isHidden, setIsHidden] = useState(Array(12).fill(false));
-  // const [pickCount, setPickCount] = useState(0);
-  // const [firstPick, setFirstPick] = useState("");
-  // const [secondPick, setSecondPick] = useState("");
-  const array = ["", ""];
+
   const handleClick = index => {
-    // setTimeout(() => {
-    //   console.log(firstPick);
-    //   console.log(secondPick);
-    // }, 1000);
-    // setPickCount(pickCount + 1);
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
         index === hiddenIndex ? !hidden : hidden
       )
     );
-    if (array[0] === "") {
-      array[0] = animalArray[index];
-    } else {
-      array[1] = animalArray[index];
-    }
-
-    console.log(array[0]);
-    console.log(array[1]);
-    // pickCount % 2 === 0
-    //   ? setFirstPick(animalArray[index])
-    //   : setSecondPick(animalArray[index]);
-
-    // if (secondPick === firstPick & pickCount > 1) {
-    //   console.log("teraz")
-    //   setFirstPick("")
-    //   setSecondPick("");
-    // }
   };
   const renderButton = index => {
     return (
