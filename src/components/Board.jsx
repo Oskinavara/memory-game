@@ -24,7 +24,7 @@ shuffle(animalArray);
 animalArray.splice(0, animalArray.length - 6);
 animalArray = animalArray.concat(animalArray);
 shuffle(animalArray);
-
+var array = [];
 const Board = () => {
   const [isHidden, setIsHidden] = useState(Array(12).fill(false));
 
@@ -34,6 +34,15 @@ const Board = () => {
         index === hiddenIndex ? !hidden : hidden
       )
     );
+    array.push(index);
+    console.log(array);
+    if (array.length === 2) {
+      if (animalArray[array[0]] === animalArray[array[1]]) {
+        console.log("dupa");
+        array = [];
+      }
+      array = [];
+    }
   };
   const renderButton = index => {
     return (
@@ -41,6 +50,7 @@ const Board = () => {
         icon={animalArray[index]}
         isHidden={isHidden[index]}
         onClick={() => handleClick(index)}
+        key={index}
       />
     );
   };
