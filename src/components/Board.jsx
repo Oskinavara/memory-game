@@ -31,6 +31,7 @@ const Board = () => {
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("");
   const [moveCount, setMoveCount] = useState(0);
+
   const handleClick = index => {
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
@@ -57,12 +58,14 @@ const Board = () => {
       }
     }
   };
+
   useEffect(() => {
     if (pairsFound === 6) {
       alert(`You win!
 You have beaten the game in ${moveCount} moves.`);
     }
   });
+
   const renderButton = index => {
     return (
       <Button
@@ -73,6 +76,7 @@ You have beaten the game in ${moveCount} moves.`);
       />
     );
   };
+
   return (
     <div className="board">
       <div className="container">

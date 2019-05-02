@@ -23,9 +23,23 @@
   padding: 5px;
 }
 .board {
-  position: relative;  
-  // background-color: black;
+  position: relative;
   margin-bottom: 20px;
+}
+.start {
+  position: absolute;
+  margin-bottom: 20px;
+  background-color: #dddddd;
+  height: 80%;
+  width: 100%;
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  justify-content: center;
+}
+.start-button{
+  font-size: 3em;
 }
 .tile {
   padding: 50% 50%;
@@ -40,18 +54,16 @@
   border-radius: 0 0 10px 10px;
 }
 
-.fas{
+.fas {
   font-size: 3.5em;
   position: absolute;
-  // right: 0.15em;
-  // bottom: 0.15em;
-  left: 0; 
-  right: 0; 
+  left: 0;
+  right: 0;
   top: 8%;
   bottom: 0;
-  margin: auto; 
+  margin: auto;
 }
 
-.row{
-  margin-bottom:30px;
+.row {
+  margin-bottom: 30px;
 }
