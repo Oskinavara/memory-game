@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Button from "./Button";
 var animalArray = [
   "fas fa-cat",
@@ -24,39 +24,52 @@ shuffle(animalArray);
 animalArray.splice(0, animalArray.length - 6);
 animalArray = animalArray.concat(animalArray);
 shuffle(animalArray);
+
 var choiceArray = [];
 const Board = () => {
-  const [isHidden, setIsHidden] = useState(Array(12).fill(false));
-
+  const [isHidden, setIsHidden] = useState(Array(12).fill(true));
+  const [pairsFound, setPairsFound] = useState(0);
+  const [isClickable, setIsClickable] = useState("");
+  const [moveCount, setMoveCount] = useState(0);
   const handleClick = index => {
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
         index === hiddenIndex ? !hidden : hidden
       )
     );
+    setMoveCount(moveCount + 1);
     choiceArray.push(index);
-    console.log(choiceArray);
     if (choiceArray.length === 2) {
       if (animalArray[choiceArray[0]] === animalArray[choiceArray[1]]) {
-        console.log("dupa");
         choiceArray = [];
+        setPairsFound(pairsFound + 1);
       } else {
-        setIsHidden(
-          isHidden.map((hidden, hiddenIndex) =>
-            index === hiddenIndex ? !hidden : hidden
-          )
-        );
+        setIsClickable("none");
+        setTimeout(() => {
+          setIsClickable("");
+          setIsHidden(
+            isHidden.map((hidden, hiddenIndex) =>
+              hiddenIndex === choiceArray[0] ? !hidden : hidden
+            )
+          );
+          choiceArray = [];
+        }, 1500);
       }
-      choiceArray = [];
     }
   };
+  useEffect(() => {
+    if (pairsFound === 6) {
+      alert(`You win!
+You have beaten the game in ${moveCount} moves.`);
+    }
+  });
   const renderButton = index => {
     return (
       <Button
         icon={animalArray[index]}
         isHidden={isHidden[index]}
         onClick={() => handleClick(index)}
-        key={index}
+        isClickable={isClickable}
       />
     );
   };
@@ -66,21 +79,27 @@ const Board = () => {
         <div className="row align-items-start">
           {animalArray
             .map((item, index) => (
-              <div className="col-3">{renderButton(index)}</div>
+              <div className="col-3" key={index}>
+                {renderButton(index)}
+              </div>
             ))
             .slice(0, 4)}
         </div>
         <div className="row align-items-center">
           {animalArray
             .map((item, index) => (
-              <div className="col-3">{renderButton(index)}</div>
+              <div className="col-3" key={index}>
+                {renderButton(index)}
+              </div>
             ))
             .slice(4, 8)}
         </div>
         <div className="row align-items-end">
           {animalArray
             .map((item, index) => (
-              <div className="col-3">{renderButton(index)}</div>
+              <div className="col-3" key={index}>
+                {renderButton(index)}
+              </div>
             ))
             .slice(8)}
         </div>

@@ -1,12 +1,20 @@
 import React from "react";
 
-const Button = ({ isHidden, icon, onClick, style}) => {
+const Button = ({ isHidden, icon, onClick, isClickable }) => {
   return (
     <>
       {isHidden ? (
-        <button className="tile" onClick={onClick} />
+        <button
+          className="tile"
+          onClick={onClick}
+          style={{ pointerEvents: isClickable }}
+        />
       ) : (
-        <button className="tile" onClick={onClick}>
+        <button
+          className="tile"
+          onClick={onClick}
+          style={{ pointerEvents: "none" }}
+        >
           <i className={icon} />
         </button>
       )}
