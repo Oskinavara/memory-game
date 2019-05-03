@@ -1,14 +1,18 @@
-import React, { Component } from "react";
+import React from "react";
 
-class OptionBar extends Component {
-  state = {};
-  render() {
-    return (
-      <div className="option-bar">
-        <button className="btn btn-light new-game-button" style={{visibility: "hidden"}}>{"New Game"}</button>
-      </div>
-    );
-  }
-}
+const OptionBar = ({isGameWon, handler}) => {
+  
+  return (
+    <div className="option-bar">
+      <button
+        className="btn btn-light new-game-button"
+        style={{ visibility: isGameWon }}
+        onClick={handler}
+      >
+        {"New Game"}
+      </button>
+    </div>
+  );
+};
 
 export default OptionBar;

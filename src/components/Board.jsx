@@ -26,7 +26,7 @@ animalArray = animalArray.concat(animalArray);
 shuffle(animalArray);
 
 var choiceArray = [];
-const Board = () => {
+const Board = ({winTrigger}) => {
   const [isHidden, setIsHidden] = useState(Array(12).fill(true));
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("");
@@ -58,11 +58,12 @@ const Board = () => {
       }
     }
   };
-
+  
   useEffect(() => {
     if (pairsFound === 6) {
-      alert(`You win!
-You have beaten the game in ${moveCount} moves.`);
+//       alert(`You win!
+// You have beaten the game in ${moveCount} moves.`);
+      winTrigger();
     }
   });
 
