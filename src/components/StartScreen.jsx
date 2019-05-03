@@ -10,7 +10,7 @@ const StartScreen = () => {
   return (
     <div style={{ display: startDisplay }} className="start">
       <button
-        className="start-button btn btn-primary"
+        className="start-button btn btn-light"
         onClick={toggleVisibility}
       >
         {"Start Game"}
