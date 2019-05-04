@@ -1,17 +1,13 @@
 import React, { useState } from "react";
 
 const StartScreen = () => {
-  const [startDisplay, setStartDisplay] = useState("");
-  const toggleVisibility = () => {
-    setStartDisplay("none");
-    console.log("shjfiasif");
-  };
+  const [startVisibility, setStartVisibility] = useState("hidden");
 
   return (
-    <div style={{ display: startDisplay }} className="start">
+    <div className="start-screen" style={{ visibility: startVisibility }}>
       <button
         className="start-button btn btn-primary"
-        onClick={toggleVisibility}
+        onClick={() => setStartVisibility("hidden")}
       >
         {"Start Game"}
       </button>

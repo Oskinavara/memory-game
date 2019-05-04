@@ -9,16 +9,17 @@ var animalArray = [
   "fas fa-horse",
   "fas fa-dove",
   "fas fa-fish",
-  "fas fa-otter",
+  "fas fa-dragon",
   "fas fa-spider",
-  "fas fa-kiwi-bird"
+  "fas fa-kiwi-bird",
+  
 ];
-function shuffle(array) {
+const shuffle = array => {
   for (let i = array.length - 1; i > 0; i--) {
     let j = Math.floor(Math.random() * (i + 1));
     [array[i], array[j]] = [array[j], array[i]];
   }
-}
+};
 
 shuffle(animalArray);
 animalArray.splice(0, animalArray.length - 6);
@@ -27,10 +28,11 @@ shuffle(animalArray);
 
 var choiceArray = [];
 const Board = () => {
-  const [isHidden, setIsHidden] = useState(Array(12).fill(true));
+  const [isHidden, setIsHidden] = useState(Array(12).fill(false));
   const [pairsFound, setPairsFound] = useState(0);
-  const [isClickable, setIsClickable] = useState("");
+  const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
+  const [newGameVisibility, setNewGameVisibility] = useState("hidden");
 
   const handleClick = index => {
     setIsHidden(
@@ -58,14 +60,11 @@ const Board = () => {
       }
     }
   };
-
-  useEffect(() => {
-    if (pairsFound === 6) {
-      alert(`You win!
-You have beaten the game in ${moveCount} moves.`);
+  useEffect(()=>{
+    if(pairsFound===6){
+      setNewGameVisibility("visible");
     }
-  });
-
+  },[pairsFound])
   const renderButton = index => {
     return (
       <Button
@@ -77,10 +76,17 @@ You have beaten the game in ${moveCount} moves.`);
     );
   };
 
+  const newGame = () => {
+    shuffle(animalArray);
+    setNewGameVisibility("hidden");
+    setIsHidden(Array(12).fill(true));
+    setPairsFound(0);
+    setMoveCount(0);
+  };
   return (
     <div className="board">
       <div className="container">
-        <div className="row align-items-start">
+        <div className="row ">
           {animalArray
             .map((item, index) => (
               <div className="col-3" key={index}>
@@ -89,7 +95,7 @@ You have beaten the game in ${moveCount} moves.`);
             ))
             .slice(0, 4)}
         </div>
-        <div className="row align-items-center">
+        <div className="row d-flex align-items-end">
           {animalArray
             .map((item, index) => (
               <div className="col-3" key={index}>
@@ -98,7 +104,7 @@ You have beaten the game in ${moveCount} moves.`);
             ))
             .slice(4, 8)}
         </div>
-        <div className="row align-items-end">
+        <div className="row d-flex align-items-end">
           {animalArray
             .map((item, index) => (
               <div className="col-3" key={index}>
@@ -107,6 +113,13 @@ You have beaten the game in ${moveCount} moves.`);
             ))
             .slice(8)}
         </div>
+      </div>
+      <div className="reset-screen" style={{ visibility: newGameVisibility }}>
+        <div>{`You win!
+You have beaten the game in ${moveCount} moves.`}</div>
+        <button className="btn btn-primary play-again-button" onClick={newGame}>
+          {"Play again"}
+        </button>
       </div>
     </div>
   );
