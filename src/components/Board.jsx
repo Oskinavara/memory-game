@@ -1,5 +1,10 @@
 import React, { useState, useEffect } from "react";
 import Button from "./Button";
+import ResetScreen from "./ResetScreen";
+import StartScreen from "./StartScreen";
+import Container from "./Container";
+import { Animated } from "react-animated-css";
+
 var animalArray = [
   "fas fa-cat",
   "fas fa-dog",
@@ -87,27 +92,49 @@ const Board = () => {
 
   return (
     <div className="board">
-      <div className="start-screen" style={{ visibility: startVisibility }}>
+      {/* <div className="start-screen" style={{ visibility: startVisibility }}>
         <button
           className="start-button btn btn-primary"
-          onClick={() => setStartVisibility("hidden")}>
+          onClick={() => setStartVisibility("hidden")}
+        >
           {"Start Game"}
         </button>
-      </div>
-      <div className="container">
+      </div> */}
+      <StartScreen
+        visibility={startVisibility}
+        onClick={() => setStartVisibility("hidden")}
+      />
+      <Container />
+      {/* <div className="container">
         {animalArray.map((i, index) => (
           <div className="tile" key={index}>
             {renderButton(index)}
           </div>
         ))}
-      </div>
-      <div className="reset-screen" style={{ visibility: newGameVisibility }}>
+      </div> */}
+      {/* <div className="reset-screen" style={{ visibility: newGameVisibility }}>
         <div className="reset-screen-text">{`You win!
 You have beaten the game in ${moveCount} moves.`}</div>
         <button className="btn btn-primary play-again-button" onClick={newGame}>
           {"Play again"}
         </button>
-      </div>
+      </div> */}
+      {pairsFound === 1 && (
+        <Animated
+          animationIn="lightSpeedIn"
+          animationOut="zoomOutDown"
+          animationInDuration={1000}
+          animationOutDuration={1000}
+          isVisible={true}
+        >
+          <ResetScreen
+            style={{ zIndex: 10 }}
+            onClick={newGame}
+            moveCount={moveCount}
+            visibility={newGameVisibility}
+          />
+        </Animated>
+      )}
     </div>
   );
 };

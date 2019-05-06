@@ -35,7 +35,7 @@ $title-bar-height: 20%;
   text-align: center;
   .start-button {
     font-size: 3rem;
-    margin: 40% auto;
+    margin: 35% auto;
   }
 }
 
@@ -52,7 +52,7 @@ $title-bar-height: 20%;
 }
 .reset-screen {
   position: absolute;
-  z-index: 3;
+  z-index: 5;
   background-color: #ffffff;
   height: 100%;
   border-radius: 10px;
