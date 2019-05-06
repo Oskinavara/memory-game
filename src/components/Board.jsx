@@ -31,6 +31,7 @@ const Board = () => {
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
+  const [startVisibility, setStartVisibility] = useState("visible");
   const [newGameVisibility, setNewGameVisibility] = useState("hidden");
 
   const handleClick = index => {
@@ -86,6 +87,13 @@ const Board = () => {
 
   return (
     <div className="board">
+      <div className="start-screen" style={{ visibility: startVisibility }}>
+        <button
+          className="start-button btn btn-primary"
+          onClick={() => setStartVisibility("hidden")}>
+          {"Start Game"}
+        </button>
+      </div>
       <div className="container">
         {animalArray.map((i, index) => (
           <div className="tile" key={index}>
@@ -94,7 +102,7 @@ const Board = () => {
         ))}
       </div>
       <div className="reset-screen" style={{ visibility: newGameVisibility }}>
-        <div>{`You win!
+        <div className="reset-screen-text">{`You win!
 You have beaten the game in ${moveCount} moves.`}</div>
         <button className="btn btn-primary play-again-button" onClick={newGame}>
           {"Play again"}
