@@ -1,5 +1,5 @@
 .App {
-  background-color: hsl(115, 50%, 50%);
+  background-color: hsl(255, 14%, 19%);
   height: 100vh;
   display: flex;
   align-items: center;
@@ -18,7 +18,7 @@
 }
 .board {
   position: absolute;
-  top: calc(3em + 1vh + 1vw);
+  // top: calc(3em + 1vh + 1vw);
   left: 0;
   right: 0;
   width: auto;
@@ -28,7 +28,7 @@
 .container {
   display: grid;
   grid: repeat(3, 1fr) / repeat(4, 1fr);
-  background: blue;
+  // background: blue;
   place-items: center;
   column-gap: 2.5rem;
   row-gap: 5rem;
