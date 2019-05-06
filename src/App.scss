@@ -22,38 +22,47 @@
   left: 0;
   right: 0;
   width: auto;
-  height: 50vh;
-  // object-fit: contain;
+  height: 25rem;
+  background:green;
+}
+.container {
+  display: grid;
+  grid: repeat(3, 1fr) / repeat(4, 1fr);
+  background: blue;
+  place-items: center;
+  column-gap: 2.5rem;
+  row-gap: 5rem;
 }
 .tile {
   border-radius: 5px;
-  position: relative;
-  width: calc(3em + 2vw + 2vh);
-  height: calc(3em + 2vw + 2vh);
-  text-align: center;
-  line-height: 50%;
-  // margin-bottom: 10vh;
+  width: calc(2rem + 2vw + 2vh);
+  height: calc(2rem + 2vw + 2vh);
+}
+.fas {
+  font-size: calc(0.6em + 2vh + 2vw);
+  margin-right: 0.2rem;
 }
 .game-title {
   font-family: "Anton", sans-serif;
   font-weight: normal;
   border-bottom: 1px solid #dddddd;
   padding: 5px;
-  font-size: calc(1em + 1vh + 1vw);
+  font-size: calc(1rem + 1vh + 1vw);
   white-space: nowrap;
 }
 
 .start-screen {
-  position: relative;
-  margin-bottom: 20px;
-  background-color: #ffffff;
-  height: 75%;
-  width: 100%;
-  bottom: 10%;
+  // position: relative;
+  // margin-bottom: 20px;
+  // background-color: #ffffff;
+  height: 25rem;
+  // width: 100%;
+  // bottom: 10%;
   z-index: 1;
   display: flex;
   align-items: center;
   justify-content: center;
+  @extend .board;
 }
 .start-button {
   font-size: 3em;
@@ -73,13 +82,4 @@
   margin-top: 2em;
 }
 
-.fas {
-  font-size: calc(1.2em + 2vh + 2vw);
-  position: relative;
-  margin-right: 0.2em;
-}
 
-// .row {
-//   // margin-bottom: 20px;
-//   // margin-top: 20px;
-// }

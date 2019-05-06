@@ -11,8 +11,7 @@ var animalArray = [
   "fas fa-fish",
   "fas fa-dragon",
   "fas fa-spider",
-  "fas fa-kiwi-bird",
-  
+  "fas fa-kiwi-bird"
 ];
 const shuffle = array => {
   for (let i = array.length - 1; i > 0; i--) {
@@ -28,7 +27,7 @@ shuffle(animalArray);
 
 var choiceArray = [];
 const Board = () => {
-  const [isHidden, setIsHidden] = useState(Array(12).fill(false));
+  const [isHidden, setIsHidden] = useState(Array(12).fill(true));
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
@@ -60,11 +59,12 @@ const Board = () => {
       }
     }
   };
-  useEffect(()=>{
-    if(pairsFound===6){
+  useEffect(() => {
+    if (pairsFound === 6) {
       setNewGameVisibility("visible");
     }
-  },[pairsFound])
+  }, [pairsFound]);
+
   const renderButton = index => {
     return (
       <Button
@@ -83,36 +83,15 @@ const Board = () => {
     setPairsFound(0);
     setMoveCount(0);
   };
+
   return (
     <div className="board">
       <div className="container">
-        <div className="row ">
-          {animalArray
-            .map((item, index) => (
-              <div className="col-3" key={index}>
-                {renderButton(index)}
-              </div>
-            ))
-            .slice(0, 4)}
-        </div>
-        <div className="row d-flex align-items-end">
-          {animalArray
-            .map((item, index) => (
-              <div className="col-3" key={index}>
-                {renderButton(index)}
-              </div>
-            ))
-            .slice(4, 8)}
-        </div>
-        <div className="row d-flex align-items-end">
-          {animalArray
-            .map((item, index) => (
-              <div className="col-3" key={index}>
-                {renderButton(index)}
-              </div>
-            ))
-            .slice(8)}
-        </div>
+        {animalArray.map((i, index) => (
+          <div className="tile" key={index}>
+            {renderButton(index)}
+          </div>
+        ))}
       </div>
       <div className="reset-screen" style={{ visibility: newGameVisibility }}>
         <div>{`You win!

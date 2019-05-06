@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 
 const StartScreen = () => {
-  const [startVisibility, setStartVisibility] = useState("hidden");
+  const [startVisibility, setStartVisibility] = useState("visible");
 
   return (
     <div className="start-screen" style={{ visibility: startVisibility }}>
