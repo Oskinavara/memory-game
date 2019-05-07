@@ -21,13 +21,12 @@ var animalArray = [
 var choiceArray = [];
 const Board = () => {
   const [boardSize, setBoardSize] = useState("12");
-  const [isHidden, setIsHidden] = useState(
-    Array(parseInt(boardSize)).fill(true)
-  );
+  const [isHidden, setIsHidden] = useState(Array(parseInt(boardSize)).fill(true));
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const [shake, setShake] = useState(false);
   const shuffle = array => {
     for (let i = array.length - 1; i > 0; i--) {
       let j = Math.floor(Math.random() * (i + 1));
@@ -36,7 +35,6 @@ const Board = () => {
   };
   useEffect(() => {
     if (gameStarted === true) {
-      console.log("dupa");
       shuffle(animalArray);
       animalArray.splice(0, animalArray.length - parseInt(boardSize) / 2);
       animalArray = animalArray.concat(animalArray);
@@ -59,6 +57,7 @@ const Board = () => {
         setPairsFound(pairsFound + 1);
       } else {
         setIsClickable("none");
+        setShake(true);
         setTimeout(() => {
           setIsClickable("");
           setIsHidden(
@@ -104,6 +103,7 @@ const Board = () => {
           isHidden={isHidden}
           isClickable={isClickable}
           onClick={handleClick}
+          shake={shake}
         />
       )}
       {pairsFound === parseInt(boardSize) / 2 && (

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-const Container = ({ animalArray, isHidden, isClickable, onClick, grid }) => {
+const Container = ({ animalArray, isHidden, isClickable, onClick, grid, shake }) => {
   const renderButton = index => {
     return (
       <Button
@@ -9,6 +9,7 @@ const Container = ({ animalArray, isHidden, isClickable, onClick, grid }) => {
         onClick={onClick}
         isClickable={isClickable}
         index={index}
+        shake={shake}
       />
     );
   };
