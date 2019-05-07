@@ -14,7 +14,7 @@ const StartScreen = ({ visibility, onClick, onChange, boardSize }) => {
         </button>
       </Animated>
       <form className="board-size-form">
-        <div>{"Board size"}</div>
+        <div className="board-size-text">{"Board size"}</div>
         <div className="pretty p-default p-curve">
           <input
             type="radio"

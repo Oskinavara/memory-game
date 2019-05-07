@@ -12,10 +12,10 @@ const Container = ({ animalArray, isHidden, isClickable, onClick, grid }) => {
       />
     );
   };
-  const array = new Array(12).fill(0)
+  
   return (
     <div className="container" style={grid}>
-      {array.map((i, index) => (
+      {animalArray.map((i, index) => (
         <div className="tile" key={index}>
           {renderButton(index)}
         </div>
