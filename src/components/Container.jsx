@@ -1,14 +1,26 @@
 import React from "react";
+import Button from "./Button";
+const Container = ({ animalArray, isHidden, isClickable, onClick }) => {
+  const renderButton = index => {
+    return (
+      <Button
+        icon={animalArray[index]}
+        isHidden={isHidden[index]}
+        onClick={onClick}
+        isClickable={isClickable}
+        index={index}
+      />
+    );
+  };
 
-const Container = () => {
-  return (<div></div>
-    // <div className="container">
-    //   {animalArray.map((i, index) => (
-    //     <div className="tile" key={index}>
-    //       {renderButton(index)}
-    //     </div>
-    //   ))}
-    // </div>
+  return (
+    <div className="container">
+      {animalArray.map((i, index) => (
+        <div className="tile" key={index}>
+          {renderButton(index)}
+        </div>
+      ))}
+    </div>
   );
 };
 

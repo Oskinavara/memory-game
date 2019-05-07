@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Button from "./Button";
+// import Button from "./Button";
 import ResetScreen from "./ResetScreen";
 import StartScreen from "./StartScreen";
 import Container from "./Container";
@@ -65,22 +65,11 @@ const Board = () => {
       }
     }
   };
-  useEffect(() => {
-    if (pairsFound === 6) {
-      setNewGameVisibility("visible");
-    }
-  }, [pairsFound]);
-
-  const renderButton = index => {
-    return (
-      <Button
-        icon={animalArray[index]}
-        isHidden={isHidden[index]}
-        onClick={() => handleClick(index)}
-        isClickable={isClickable}
-      />
-    );
-  };
+  // useEffect(() => {
+  //   if (pairsFound === 6) {
+  //     setNewGameVisibility("visible");
+  //   }
+  // }, [pairsFound]);
 
   const newGame = () => {
     shuffle(animalArray);
@@ -92,34 +81,18 @@ const Board = () => {
 
   return (
     <div className="board">
-      {/* <div className="start-screen" style={{ visibility: startVisibility }}>
-        <button
-          className="start-button btn btn-primary"
-          onClick={() => setStartVisibility("hidden")}
-        >
-          {"Start Game"}
-        </button>
-      </div> */}
       <StartScreen
         visibility={startVisibility}
         onClick={() => setStartVisibility("hidden")}
       />
-      <Container />
-      {/* <div className="container">
-        {animalArray.map((i, index) => (
-          <div className="tile" key={index}>
-            {renderButton(index)}
-          </div>
-        ))}
-      </div> */}
-      {/* <div className="reset-screen" style={{ visibility: newGameVisibility }}>
-        <div className="reset-screen-text">{`You win!
-You have beaten the game in ${moveCount} moves.`}</div>
-        <button className="btn btn-primary play-again-button" onClick={newGame}>
-          {"Play again"}
-        </button>
-      </div> */}
-      {pairsFound === 1 && (
+      <Container
+        animalArray={animalArray}
+        isHidden={isHidden}
+        isClickable={isClickable}
+        onClick={handleClick}
+      />
+
+      {pairsFound === 6 && (
         <Animated
           animationIn="lightSpeedIn"
           animationOut="zoomOutDown"
@@ -128,10 +101,9 @@ You have beaten the game in ${moveCount} moves.`}</div>
           isVisible={true}
         >
           <ResetScreen
-            style={{ zIndex: 10 }}
             onClick={newGame}
             moveCount={moveCount}
-            visibility={newGameVisibility}
+            visibility={"visible"}
           />
         </Animated>
       )}
