@@ -1,5 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Button from "./Button";
+import React, { useState } from "react";
+import ResetScreen from "./ResetScreen";
+import StartScreen from "./StartScreen";
+import Container from "./Container";
+
 var animalArray = [
   "fas fa-cat",
   "fas fa-dog",
@@ -31,9 +34,7 @@ const Board = () => {
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
-  const [startVisibility, setStartVisibility] = useState("visible");
-  const [newGameVisibility, setNewGameVisibility] = useState("hidden");
-
+  const [gameStarted, setGameStarted] = useState(false);
   const handleClick = index => {
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
@@ -60,26 +61,9 @@ const Board = () => {
       }
     }
   };
-  useEffect(() => {
-    if (pairsFound === 6) {
-      setNewGameVisibility("visible");
-    }
-  }, [pairsFound]);
-
-  const renderButton = index => {
-    return (
-      <Button
-        icon={animalArray[index]}
-        isHidden={isHidden[index]}
-        onClick={() => handleClick(index)}
-        isClickable={isClickable}
-      />
-    );
-  };
 
   const newGame = () => {
     shuffle(animalArray);
-    setNewGameVisibility("hidden");
     setIsHidden(Array(12).fill(true));
     setPairsFound(0);
     setMoveCount(0);
@@ -87,27 +71,21 @@ const Board = () => {
 
   return (
     <div className="board">
-      <div className="start-screen" style={{ visibility: startVisibility }}>
-        <button
-          className="start-button btn btn-primary"
-          onClick={() => setStartVisibility("hidden")}>
-          {"Start Game"}
-        </button>
-      </div>
-      <div className="container">
-        {animalArray.map((i, index) => (
-          <div className="tile" key={index}>
-            {renderButton(index)}
-          </div>
-        ))}
-      </div>
-      <div className="reset-screen" style={{ visibility: newGameVisibility }}>
-        <div className="reset-screen-text">{`You win!
-You have beaten the game in ${moveCount} moves.`}</div>
-        <button className="btn btn-primary play-again-button" onClick={newGame}>
-          {"Play again"}
-        </button>
-      </div>
+      {gameStarted === false && (
+        <StartScreen onClick={() => setGameStarted(true)} />
+      )}
+      {pairsFound < 6 && gameStarted === true && (
+        <Container
+          // grid={{ grid: "repeat(2, 1fr) / repeat(5, 1fr)" }}
+          animalArray={animalArray}
+          isHidden={isHidden}
+          isClickable={isClickable}
+          onClick={handleClick}
+        />
+      )}
+      {pairsFound === 6 && (
+        <ResetScreen onClick={newGame} moveCount={moveCount} />
+      )}
     </div>
   );
 };
