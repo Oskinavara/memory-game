@@ -12,7 +12,7 @@ const Container = ({ animalArray, isHidden, isClickable, onClick, grid }) => {
       />
     );
   };
-
+  
   return (
     <div className="container" style={grid}>
       {animalArray.map((i, index) => (

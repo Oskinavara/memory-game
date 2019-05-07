@@ -1,7 +1,8 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ResetScreen from "./ResetScreen";
 import StartScreen from "./StartScreen";
 import Container from "./Container";
+// import animalArray from "./Icons.jsx"
 
 var animalArray = [
   "fas fa-cat",
@@ -16,25 +17,34 @@ var animalArray = [
   "fas fa-spider",
   "fas fa-kiwi-bird"
 ];
-const shuffle = array => {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-};
-
-shuffle(animalArray);
-animalArray.splice(0, animalArray.length - 6);
-animalArray = animalArray.concat(animalArray);
-shuffle(animalArray);
 
 var choiceArray = [];
 const Board = () => {
-  const [isHidden, setIsHidden] = useState(Array(12).fill(true));
+  const [boardSize, setBoardSize] = useState("12");
+  const [isHidden, setIsHidden] = useState(
+    Array(parseInt(boardSize)).fill(true)
+  );
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const shuffle = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+  useEffect(() => {
+    if (gameStarted === true) {
+      console.log("dupa");
+      shuffle(animalArray);
+      animalArray.splice(0, animalArray.length - parseInt(boardSize) / 2);
+      animalArray = animalArray.concat(animalArray);
+      shuffle(animalArray);
+      setIsHidden(Array(parseInt(boardSize)).fill(true));
+    }
+  }, [gameStarted, boardSize]);
+
   const handleClick = index => {
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
@@ -64,26 +74,39 @@ const Board = () => {
 
   const newGame = () => {
     shuffle(animalArray);
-    setIsHidden(Array(12).fill(true));
+    setIsHidden(Array(parseInt(boardSize)).fill(true));
     setPairsFound(0);
     setMoveCount(0);
   };
-
+  const handleChange = e => {
+    setBoardSize(e.target.value);
+  };
   return (
     <div className="board">
       {gameStarted === false && (
-        <StartScreen onClick={() => setGameStarted(true)} />
+        <StartScreen
+          onClick={() => setGameStarted(true)}
+          onChange={handleChange}
+          boardSize={boardSize}
+        />
       )}
-      {pairsFound < 6 && gameStarted === true && (
+      {pairsFound < parseInt(boardSize) / 2 && gameStarted === true && (
         <Container
-          // grid={{ grid: "repeat(2, 1fr) / repeat(5, 1fr)" }}
+          grid={
+            boardSize === "12"
+              ? { grid: "repeat(4, 1fr) / repeat(3, 1fr)" }
+              : {
+                  grid: "repeat(4, 1fr) / repeat(4, 1fr)",
+                  columnGap: "calc(0.5rem + 0.5vw)"
+                }
+          }
           animalArray={animalArray}
           isHidden={isHidden}
           isClickable={isClickable}
           onClick={handleClick}
         />
       )}
-      {pairsFound === 6 && (
+      {pairsFound === parseInt(boardSize) / 2 && (
         <ResetScreen onClick={newGame} moveCount={moveCount} />
       )}
     </div>
