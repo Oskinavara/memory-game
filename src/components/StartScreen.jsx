@@ -1,14 +1,18 @@
 import React from "react";
-
-const StartScreen = ({visibility, onClick}) => {
+import { Animated } from "react-animated-css";
+const StartScreen = ({ visibility, onClick }) => {
   return (
     <div className="start-screen" style={{ visibility: visibility }}>
-      <button
-        className="start-button btn btn-primary"
-        onClick={onClick}
+      <Animated
+        animationIn="zoomIn"
+        animationOut=""
+        animationInDuration="1000"
+        isVisible={true}
       >
-        {"Start Game"}
-      </button>
+        <button className="start-button btn btn-primary" onClick={onClick}>
+          {"Start Game"}
+        </button>
+      </Animated>
     </div>
   );
 };

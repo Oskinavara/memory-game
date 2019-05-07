@@ -1,13 +1,12 @@
 import React from "react";
 import { Animated } from "react-animated-css";
-const ResetScreen = ({ moveCount, onClick }) => {
+const ResetScreen = ({ moveCount, onClick, animateOut }) => {
   return (
     <Animated
       animationIn="fadeIn"
-      animationOut="zoomOutDown"
-      animationInDuration={1000}
+      animationOut="fadeOut"
+      animationInDuration={3000}
       animationOutDuration={1000}
-      isVisible={true}
     >
       <div className="reset-screen">
         <div className="reset-screen-text">{`You win!

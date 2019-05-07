@@ -76,7 +76,7 @@ const Board = () => {
       )}
       {pairsFound < 6 && gameStarted === true && (
         <Container
-          grid={{ grid: "repeat(2, 1fr) / repeat(3, 1fr)" }}
+          // grid={{ grid: "repeat(2, 1fr) / repeat(5, 1fr)" }}
           animalArray={animalArray}
           isHidden={isHidden}
           isClickable={isClickable}
