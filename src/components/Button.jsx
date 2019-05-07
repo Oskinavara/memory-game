@@ -1,5 +1,5 @@
 import React from "react";
-import { Animated } from "react-animated-css";
+// import { Animated } from "react-animated-css";
 const Button = ({ isHidden, icon, onClick, isClickable, index }) => {
   return (
     <>
@@ -15,13 +15,13 @@ const Button = ({ isHidden, icon, onClick, isClickable, index }) => {
           onClick={onClick}
           style={{ pointerEvents: "none" }}
         >
-          <Animated
+          {/* <Animated
             animationIn="shake"
             animationInDuration={150}
             isVisible={""}
-          >
+          > */}
             <i className={icon} />
-          </Animated>
+          {/* </Animated> */}
         </button>
       )}
     </>

@@ -1,12 +1,7 @@
-import React, { useState } from "react";
-
-const StartScreen = ({ visibility, onClick }) => {
-  const [pick, setPick] = useState("3x4");
-
-  const handleChange = e => {
-    setPick(e.target.value);
-  };
-
+import React from "react";
+import { Animated } from "react-animated-css";
+const StartScreen = ({ visibility, onClick, onChange, boardSize }) => {
+ 
   return (
     <div className="start-screen" style={{ visibility: visibility }}>
       <Animated
@@ -18,13 +13,36 @@ const StartScreen = ({ visibility, onClick }) => {
           {"Start Game"}
         </button>
       </Animated>
-      <div className="pretty p-switch toggle-size">
-        <input type="radio" name="switch1" />
-        
-        <div className="state p-success">
-          <label>Summer</label>
+      <form className="board-size-form">
+        <div>{"Board size"}</div>
+        <div className="pretty p-default p-curve">
+          <input
+            type="radio"
+            name="board-size"
+            checked={boardSize === "12"}
+            value={"12"}
+            onChange={onChange}
+          />
+          <div className="state p-primary-o">
+            <i className="icon mdi mdi-check" />
+            <label>3x4</label>
+          </div>
         </div>
-      </div>
+
+        <div className="pretty p-default p-curve">
+          <input
+            type="radio"
+            name="board-size"
+            checked={boardSize === "16"}
+            value={"16"}
+            onChange={onChange}
+          />
+          <div className="state p-primary-o">
+            <i className="icon mdi mdi-check" />
+            <label>4x4</label>
+          </div>
+        </div>
+      </form>
     </div>
   );
 };

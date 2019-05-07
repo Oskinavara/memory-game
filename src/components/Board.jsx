@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import ResetScreen from "./ResetScreen";
 import StartScreen from "./StartScreen";
 import Container from "./Container";
@@ -16,25 +16,28 @@ var animalArray = [
   "fas fa-spider",
   "fas fa-kiwi-bird"
 ];
-const shuffle = array => {
-  for (let i = array.length - 1; i > 0; i--) {
-    let j = Math.floor(Math.random() * (i + 1));
-    [array[i], array[j]] = [array[j], array[i]];
-  }
-};
-
-shuffle(animalArray);
-animalArray.splice(0, animalArray.length - 6);
-animalArray = animalArray.concat(animalArray);
-shuffle(animalArray);
 
 var choiceArray = [];
 const Board = () => {
+  const [boardSize, setBoardSize] = useState("12");
   const [isHidden, setIsHidden] = useState(Array(12).fill(true));
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
+  const shuffle = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      let j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+  useEffect(() => {
+    shuffle(animalArray);
+    animalArray.splice(0, animalArray.length - 6);
+    animalArray = animalArray.concat(animalArray);
+    shuffle(animalArray);
+  }, [boardSize]);
+
   const handleClick = index => {
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
@@ -68,11 +71,18 @@ const Board = () => {
     setPairsFound(0);
     setMoveCount(0);
   };
-
+  const handleChange = e => {
+    setBoardSize(e.target.value);
+    console.log(boardSize);
+  };
   return (
     <div className="board">
       {gameStarted === false && (
-        <StartScreen onClick={() => setGameStarted(true)} />
+        <StartScreen
+          onClick={() => setGameStarted(true)}
+          onChange={handleChange}
+          boardSize={boardSize}
+        />
       )}
       {pairsFound < 6 && gameStarted === true && (
         <Container
