@@ -1,9 +1,7 @@
-import React, { useState, useEffect } from "react";
-// import Button from "./Button";
+import React, { useState } from "react";
 import ResetScreen from "./ResetScreen";
 import StartScreen from "./StartScreen";
 import Container from "./Container";
-import { Animated } from "react-animated-css";
 
 var animalArray = [
   "fas fa-cat",
@@ -36,9 +34,7 @@ const Board = () => {
   const [pairsFound, setPairsFound] = useState(0);
   const [isClickable, setIsClickable] = useState("visible");
   const [moveCount, setMoveCount] = useState(0);
-  const [startVisibility, setStartVisibility] = useState("visible");
-  const [newGameVisibility, setNewGameVisibility] = useState("hidden");
-
+  const [gameStarted, setGameStarted] = useState(false);
   const handleClick = index => {
     setIsHidden(
       isHidden.map((hidden, hiddenIndex) =>
@@ -65,15 +61,9 @@ const Board = () => {
       }
     }
   };
-  // useEffect(() => {
-  //   if (pairsFound === 6) {
-  //     setNewGameVisibility("visible");
-  //   }
-  // }, [pairsFound]);
 
   const newGame = () => {
     shuffle(animalArray);
-    setNewGameVisibility("hidden");
     setIsHidden(Array(12).fill(true));
     setPairsFound(0);
     setMoveCount(0);
@@ -81,31 +71,20 @@ const Board = () => {
 
   return (
     <div className="board">
-      <StartScreen
-        visibility={startVisibility}
-        onClick={() => setStartVisibility("hidden")}
-      />
-      <Container
-        animalArray={animalArray}
-        isHidden={isHidden}
-        isClickable={isClickable}
-        onClick={handleClick}
-      />
-
+      {gameStarted === false && (
+        <StartScreen onClick={() => setGameStarted(true)} />
+      )}
+      {pairsFound < 6 && gameStarted === true && (
+        <Container
+          grid={{ grid: "repeat(2, 1fr) / repeat(3, 1fr)" }}
+          animalArray={animalArray}
+          isHidden={isHidden}
+          isClickable={isClickable}
+          onClick={handleClick}
+        />
+      )}
       {pairsFound === 6 && (
-        <Animated
-          animationIn="lightSpeedIn"
-          animationOut="zoomOutDown"
-          animationInDuration={1000}
-          animationOutDuration={1000}
-          isVisible={true}
-        >
-          <ResetScreen
-            onClick={newGame}
-            moveCount={moveCount}
-            visibility={"visible"}
-          />
-        </Animated>
+        <ResetScreen onClick={newGame} moveCount={moveCount} />
       )}
     </div>
   );

@@ -1,6 +1,6 @@
 import React from "react";
 import Button from "./Button";
-const Container = ({ animalArray, isHidden, isClickable, onClick }) => {
+const Container = ({ animalArray, isHidden, isClickable, onClick, grid }) => {
   const renderButton = index => {
     return (
       <Button
@@ -14,7 +14,7 @@ const Container = ({ animalArray, isHidden, isClickable, onClick }) => {
   };
 
   return (
-    <div className="container">
+    <div className="container" style={grid}>
       {animalArray.map((i, index) => (
         <div className="tile" key={index}>
           {renderButton(index)}
