@@ -3,7 +3,7 @@ import { Animated } from 'react-animated-css';
 const StartScreen = ({ visibility, onClick, onChange, boardSize }) => {
   return (
     <div className="start-screen" style={{ visibility: visibility }}>
-      <Animated animationIn="zoomIn" animationInDuration={1000} isVisible={true}>
+      <Animated animationIn="zoomIn" animationInDuration={600} isVisible={true}>
         <button className="start-button btn btn-primary" onClick={onClick}>
           {'Start Game'}
         </button>
