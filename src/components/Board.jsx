@@ -1,31 +1,29 @@
-import React, { useState, useEffect } from "react";
-import ResetScreen from "./ResetScreen";
-import StartScreen from "./StartScreen";
-import Container from "./Container";
+import React, { useState, useEffect } from 'react';
+import ResetScreen from './ResetScreen';
+import StartScreen from './StartScreen';
+import Container from './Container';
 // import animalArray from "./Icons.jsx"
 
 var animalArray = [
-  "fas fa-cat",
-  "fas fa-dog",
-  "fas fa-frog",
-  "fas fa-crow",
-  "fas fa-hippo",
-  "fas fa-horse",
-  "fas fa-dove",
-  "fas fa-fish",
-  "fas fa-dragon",
-  "fas fa-spider",
-  "fas fa-kiwi-bird"
+  'fas fa-cat',
+  'fas fa-dog',
+  'fas fa-frog',
+  'fas fa-crow',
+  'fas fa-hippo',
+  'fas fa-horse',
+  'fas fa-dove',
+  'fas fa-fish',
+  'fas fa-dragon',
+  'fas fa-spider',
+  'fas fa-kiwi-bird'
 ];
 
 var choiceArray = [];
 const Board = () => {
-  const [boardSize, setBoardSize] = useState("12");
-  const [isHidden, setIsHidden] = useState(
-    Array(parseInt(boardSize)).fill(true)
-  );
+  const [boardSize, setBoardSize] = useState('12');
+  const [isHidden, setIsHidden] = useState(Array(parseInt(boardSize)).fill(true));
   const [pairsFound, setPairsFound] = useState(0);
-  const [isClickable, setIsClickable] = useState("visible");
+  const [isClickable, setIsClickable] = useState('visible');
   const [moveCount, setMoveCount] = useState(0);
   const [gameStarted, setGameStarted] = useState(false);
   const shuffle = array => {
@@ -36,7 +34,7 @@ const Board = () => {
   };
   useEffect(() => {
     if (gameStarted === true) {
-      console.log("dupa");
+      console.log('dupa');
       shuffle(animalArray);
       animalArray.splice(0, animalArray.length - parseInt(boardSize) / 2);
       animalArray = animalArray.concat(animalArray);
@@ -46,11 +44,7 @@ const Board = () => {
   }, [gameStarted, boardSize]);
 
   const handleClick = index => {
-    setIsHidden(
-      isHidden.map((hidden, hiddenIndex) =>
-        index === hiddenIndex ? !hidden : hidden
-      )
-    );
+    setIsHidden(isHidden.map((hidden, hiddenIndex) => (index === hiddenIndex ? !hidden : hidden)));
     setMoveCount(moveCount + 1);
     choiceArray.push(index);
     if (choiceArray.length === 2) {
@@ -58,14 +52,10 @@ const Board = () => {
         choiceArray = [];
         setPairsFound(pairsFound + 1);
       } else {
-        setIsClickable("none");
+        setIsClickable('none');
         setTimeout(() => {
-          setIsClickable("");
-          setIsHidden(
-            isHidden.map((hidden, hiddenIndex) =>
-              hiddenIndex === choiceArray[0] ? !hidden : hidden
-            )
-          );
+          setIsClickable('');
+          setIsHidden(isHidden.map((hidden, hiddenIndex) => (hiddenIndex === choiceArray[0] ? !hidden : hidden)));
           choiceArray = [];
         }, 1500);
       }
@@ -84,20 +74,16 @@ const Board = () => {
   return (
     <div className="board">
       {gameStarted === false && (
-        <StartScreen
-          onClick={() => setGameStarted(true)}
-          onChange={handleChange}
-          boardSize={boardSize}
-        />
+        <StartScreen onClick={() => setGameStarted(true)} onChange={handleChange} boardSize={boardSize} />
       )}
-      {pairsFound < parseInt(boardSize) / 2 && gameStarted === true && (
+      {gameStarted === true && (
         <Container
           grid={
-            boardSize === "12"
-              ? { grid: "repeat(4, 1fr) / repeat(3, 1fr)" }
+            boardSize === '12'
+              ? { grid: 'repeat(4, 1fr) / repeat(3, 1fr)' }
               : {
-                  grid: "repeat(4, 1fr) / repeat(4, 1fr)",
-                  columnGap: "calc(0.5rem + 0.5vw)"
+                  grid: 'repeat(4, 1fr) / repeat(4, 1fr)',
+                  columnGap: 'calc(0.5rem + 0.5vw)'
                 }
           }
           animalArray={animalArray}
@@ -106,9 +92,7 @@ const Board = () => {
           onClick={handleClick}
         />
       )}
-      {pairsFound === parseInt(boardSize) / 2 && (
-        <ResetScreen onClick={newGame} moveCount={moveCount} />
-      )}
+      {pairsFound === parseInt(boardSize) / 2 && <ResetScreen onClick={newGame} moveCount={moveCount} />}
     </div>
   );
 };
