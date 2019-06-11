@@ -15,9 +15,7 @@ $title-bar-height: 15%;
   min-height: 500px;
   height: 60vh;
   position: relative;
-  // right: 30%;
   border-radius: 10px;
-  right: 30%;
 }
 .board {
   position: relative;
@@ -37,13 +35,13 @@ $title-bar-height: 15%;
     font-size: 3rem;
     margin: 30% auto 15%;
   }
-  .board-size-form{
+  .board-size-form {
     position: relative;
     font-size: 20px;
     text-align: center;
     left: 2.2%;
   }
-  .board-size-text{
+  .board-size-text {
     position: relative;
     font-size: 30px;
     right: 2.2%;
@@ -86,7 +84,7 @@ $title-bar-height: 15%;
   margin-right: 0.2rem;
 }
 .game-title {
-  font-family: "Anton", sans-serif;
+  font-family: 'Anton', sans-serif;
   font-weight: normal;
   border-bottom: 1px solid #dddddd;
   display: flex;
@@ -96,4 +94,3 @@ $title-bar-height: 15%;
   font-size: calc(1.7em + 1.5vw);
   white-space: nowrap;
 }
-
