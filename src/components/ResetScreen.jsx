@@ -1,6 +1,6 @@
 import React from 'react';
 import { Animated } from 'react-animated-css';
-const ResetScreen = ({ moveCount, onClick, animateOut }) => {
+const ResetScreen = ({ moveCount, onClick }) => {
   return (
     <Animated animationIn="fadeIn" animationInDuration={3000}>
       <div className="reset-screen">
